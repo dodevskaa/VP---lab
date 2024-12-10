@@ -4,15 +4,20 @@ import mk.finki.ukim.wp.lab.model.Album;
 import mk.finki.ukim.wp.lab.model.Song;
 import mk.finki.ukim.wp.lab.service.AlbumService;
 import mk.finki.ukim.wp.lab.service.SongService;
+import org.h2.engine.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import static java.awt.SystemColor.text;
 
 @Controller
 @RequestMapping("/songs")
 public class SongController {
+
     private final SongService songService;
     private final AlbumService albumService;
 
@@ -81,4 +86,28 @@ public class SongController {
         songService.delete(id);
         return "redirect:/songs";
     }
+
+
+//    dopolnitelno
+    @GetMapping("/filter")
+    public String filterSongsByGenre(
+            @RequestParam(required = false)String text,
+            Model model){
+
+        List<Song> songs;
+
+        if(text != null && !text.isEmpty()){
+//            songs=songService.listSongs();
+//            songs=songService.searchSongs("%" + text + "%");
+            songs=songService.searchSongs(text);
+        }
+        else {
+            songs=songService.listSongs();
+        }
+        model.addAttribute("songs", songs);
+        return "songs";
+
+    }
+
+
 }

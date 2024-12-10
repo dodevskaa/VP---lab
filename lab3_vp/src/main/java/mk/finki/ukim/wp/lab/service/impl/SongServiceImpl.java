@@ -49,5 +49,10 @@ public class SongServiceImpl implements SongService {
         return artist;
     }
 
+//    dopolnitelno
+    @Override
+    public List<Song> searchSongs(String text){
+        return songRepository.findAllByGenreLike(text);
+    }
 
 }

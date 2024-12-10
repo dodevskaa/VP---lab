@@ -15,4 +15,7 @@ public interface SongService{
 
     void save(Song song);
     void delete(Long id);
+
+//    dopolnitelno
+    List<Song> searchSongs(String text);
 }

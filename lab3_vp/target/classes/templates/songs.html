@@ -15,6 +15,17 @@
     <h1>Welcome to My Music Store</h1>
 </header>
 <main>
+
+    <!--    dopolnitelno-->
+    <h3>Filter Songs by Genre</h3>
+    <form th:action="@{filter}" method="get" style="margin-bottom: 20px;">
+        <label for="genreFilter">Enter Genre:</label>
+        <input type="text" id="genreFilter" name="text" placeholder="e.g. Rock, Pop"><br>
+        <button type="submit">Filter</button>
+    </form>
+
+
+
     <h2>Choose a song:</h2>
     <ul>
         <li th:each="song : ${songs}">
